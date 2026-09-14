@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Instagram Pause",
+  "version": "1.0.0",
+  "description": "Pauses an Instagram session after 30 minutes and asks before continuing.",
+  "permissions": ["alarms", "storage", "tabs"],
+  "host_permissions": ["*://*.instagram.com/*"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.instagram.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_title": "Instagram Pause"
+  }
+}
