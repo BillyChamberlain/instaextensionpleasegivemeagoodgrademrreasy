@@ -1,23 +1,30 @@
 # Roadmap
 
-## Phase 1
+## Current: Core Interruption
 
-- Initialize project structure
-- Create canvas bootstrap and animation loop
-- Add input binding scaffold
+- Ship the MV3 manifest and Instagram match patterns.
+- Start one 30-minute alarm per Instagram tab.
+- Redirect expired sessions to the pause page.
+- Preserve the return URL and support explicit continuation.
+- Document installation and short-timer testing.
 
-## Phase 2
+## Next: Trustworthy State
 
-- Add gameplay systems and state management
-- Create sprites, UI, and interactions
-- Add asset pipeline
+- Prevent duplicate timer resets during ordinary page navigation within the same Instagram tab.
+- Add a visible remaining-time indicator in the extension popup or badge.
+- Handle service-worker restarts and browser restarts with an intentional persistence policy.
+- Add automated tests for entering Instagram, leaving it, expiry, tab closure, and Continue.
 
-## Phase 3
+## Later: User Control
 
-- Polish mechanics and performance
-- Expand docs and project process notes
-- Prepare release-ready build
+- Add an options page for a user-selected session length.
+- Add an optional daily session limit without making it the default.
+- Provide an accessible pause-page focus state and keyboard flow.
+- Make reset and extension-disable behavior easy to understand.
 
-## Phase 3
+## Non-goals
 
-- Added a document download that is not a virus(I promise)
+- Content analysis or surveillance.
+- Permanent blocking.
+- Cross-site activity tracking.
+- Engagement optimization.
