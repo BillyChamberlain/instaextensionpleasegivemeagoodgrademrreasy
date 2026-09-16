@@ -1,5 +1,7 @@
 # System Charter
 
+This system is designed to be a stopper for instagram. Most stoppers are designed only for phones and mobile devices, but few stop it on a browser. This system will set a 30 minute timer once instagram is opened, and then will pop up the screen asking if you want to continue.
+
 ## What This System Means
 
 Instagram Pause is a consent-preserving interruption system. It marks 30 minutes of activity on Instagram, creates a moment to stop, and asks the person to make a fresh decision before returning.

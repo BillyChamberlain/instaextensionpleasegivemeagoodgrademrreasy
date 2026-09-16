@@ -4,6 +4,8 @@ Instagram Pause is a Chrome Manifest V3 extension that interrupts an Instagram s
 
 The product is a deliberate boundary, not a blocker. It preserves the current Instagram URL, gives the person a clear pause, and leaves the final decision with them.
 
+On the backend, it simply sets a timer up once instagram is refreshed / opened for 30 minutes. Once the site has been open for that long, it force refreshes the site into a premade html that simply reminds you of what you are doing. You can go back but the cache is refreshed with Instagram
+
 ## Install
 
 1. Open `chrome://extensions` in Chrome.
