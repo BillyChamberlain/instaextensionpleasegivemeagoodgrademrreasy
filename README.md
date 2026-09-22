@@ -25,11 +25,15 @@ For a quick test, temporarily change `SESSION_MINUTES` in `background.js` to `0.
 - `background.js` owns tab-scoped alarms, stores the last URL, and redirects to the pause page.
 - `index.html`, `continue.js`, and `style.css` form the pause and continuation experience.
 
-## The Break: Crash Log Experiment
+## The Break 1: Crash Log Experiment
 
-The pause page is intentionally allowed to become a little unreasonable. When it appears, the interface behaves like a failing sci-fi terminal: scanlines move across the frame, the page jolts through color-channel glitches, and the session report assembles line by line. After the noise settles, the result is a readable crash log for the site itself.
+The pause page is intentionally allowed to become a little unreasonable. Before it appears, the Instagram tab itself gets one last sci-fi failure: a content script places a temporary distortion layer over the current page, jitters the document through color-channel glitches, and announces that the session is unstable. Then the tab hands off to the pause page, where scanlines move across the terminal frame and the session report assembles line by line. After the noise settles, the result is a readable crash log for the site itself.
 
-This is a deliberate break from the quiet boundary described above. It pushes the premise to its limit and asks what happens when a reminder does not just interrupt the feed, but makes the interruption feel like an event. The effect is CSS-only, brief, and still lands on the same clear decision: return to Instagram or stay paused. Reduced-motion preferences skip the distortion while keeping the report visible.
+This is a deliberate break from the quiet boundary described above. It pushes the premise to its limit and asks what happens when a reminder does not just interrupt the feed, but makes the interruption feel like an event. The effect is local to the current tab, brief, and still lands on the same clear decision: return to Instagram or stay paused. Reduced-motion preferences skip the motion while keeping the report visible.
+
+## The Break 2: Crash Log Experiment on instagran too
+
+This time I want the break to happen on instagram as well as the website, make it look like the instagram site crashes as well as going to my disruption site. This pushed the js far beyond intended, but ultimately led to a mervelous output that I envisioned after the initial thought.
 
 ## Boundary
 

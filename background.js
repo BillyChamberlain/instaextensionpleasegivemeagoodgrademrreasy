@@ -1,4 +1,4 @@
-const SESSION_MINUTES = 0.1;
+const SESSION_MINUTES = 30;
 const ALARM_PREFIX = 'instagram-session-';
 
 function alarmName(tabId) {
@@ -26,6 +26,11 @@ chrome.runtime.onMessage.addListener((message, sender) => {
   }
 });
 
+chrome.runtime.onMessage.addListener((message, sender) => {
+  if (message.type !== 'instagram-glitch-complete' || !sender.tab?.id) return;
+  redirectToPause(sender.tab.id);
+});
+
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (!changeInfo.url) return;
   if (changeInfo.url.includes('instagram.com')) {
@@ -37,6 +42,12 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 
 chrome.tabs.onRemoved.addListener((tabId) => stopSession(tabId));
 
+async function redirectToPause(tabId) {
+  await chrome.tabs.update(tabId, {
+    url: chrome.runtime.getURL(`index.html?tabId=${tabId}`)
+  });
+}
+
 chrome.alarms.onAlarm.addListener(async (alarm) => {
   if (!alarm.name.startsWith(ALARM_PREFIX)) return;
 
@@ -47,8 +58,8 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
 
   await chrome.storage.session.set({ [`pause-${tabId}`]: session });
   await chrome.storage.session.remove(`tab-${tabId}`);
-  await chrome.tabs.update(tabId, {
-    url: chrome.runtime.getURL(`index.html?tabId=${tabId}`)
+  chrome.tabs.sendMessage(tabId, { type: 'instagram-glitch' }).catch(() => {
+    redirectToPause(tabId);
   });
 });
 
