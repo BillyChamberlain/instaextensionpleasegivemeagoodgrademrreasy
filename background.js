@@ -1,4 +1,4 @@
-const SESSION_MINUTES = 30;
+const SESSION_MINUTES = 0.1;
 const ALARM_PREFIX = 'instagram-session-';
 
 function alarmName(tabId) {

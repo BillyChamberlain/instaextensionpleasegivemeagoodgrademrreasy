@@ -8,9 +8,16 @@
   </head>
   <body>
     <main class="pause-card" aria-labelledby="pauseTitle">
-      <p class="eyebrow">Instagram Pause</p>
-      <h1 id="pauseTitle">You have been here for 30 minutes.</h1>
-      <p class="message">Would you like to continue?</p>
+      <div class="terminal-header">
+        <p class="eyebrow">Instagram Pause // Runtime Monitor</p>
+        <span class="status" aria-label="System status">SYS_PAUSED</span>
+      </div>
+      <div class="crash-log" aria-live="polite">
+        <p class="log-line log-label">CRASH LOG / SESSION INTERRUPTION</p>
+        <h1 id="pauseTitle" class="log-line">You have been here for 30 minutes.</h1>
+        <p class="log-line message">The site has been paused before the scroll can continue.</p>
+        <p class="log-line log-detail">[01] attention budget exceeded<br />[02] infinite feed detected<br />[03] human override required</p>
+      </div>
       <button id="continueButton" type="button">Continue to Instagram</button>
     </main>
     <script src="./continue.js"></script>
