@@ -11,6 +11,7 @@ async function startSession(tab) {
   await chrome.storage.session.set({
     [`tab-${tab.id}`]: { url: tab.url }
   });
+  await chrome.storage.session.remove(`pause-${tab.id}`);
   await chrome.alarms.clear(alarmName(tab.id));
   chrome.alarms.create(alarmName(tab.id), { delayInMinutes: SESSION_MINUTES });
 }
@@ -61,19 +62,4 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
   chrome.tabs.sendMessage(tabId, { type: 'instagram-glitch' }).catch(() => {
     redirectToPause(tabId);
   });
-});
-
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.type !== 'continue-instagram') return;
-
-  const tabId = Number(message.tabId);
-  chrome.storage.session.get(`pause-${tabId}`).then(async (stored) => {
-    const session = stored[`pause-${tabId}`];
-    await chrome.storage.session.remove(`pause-${tabId}`);
-    await chrome.tabs.update(tabId, {
-      url: session?.url || 'https://www.instagram.com/'
-    });
-    sendResponse({ ok: true });
-  });
-  return true;
 });

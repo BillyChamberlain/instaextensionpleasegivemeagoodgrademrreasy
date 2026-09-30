@@ -9,16 +9,16 @@
   <body>
     <main class="pause-card" aria-labelledby="pauseTitle">
       <div class="terminal-header">
-        <p class="eyebrow">Instagram Pause // Runtime Monitor</p>
-        <span class="status" aria-label="System status">SYS_PAUSED</span>
+        <p class="eyebrow">Instagram Pause // Session Monitor</p>
+        <span class="status" aria-label="System status">PAUSE ACTIVE</span>
       </div>
       <div class="crash-log" aria-live="polite">
         <p class="log-line log-label">CRASH LOG / SESSION INTERRUPTION</p>
         <h1 id="pauseTitle" class="log-line">You have been here for 30 minutes.</h1>
         <p class="log-line message">The site has been paused before the scroll can continue.</p>
-        <p class="log-line log-detail">[01] attention budget exceeded<br />[02] infinite feed detected<br />[03] human override required</p>
+        <p class="log-line log-detail">[01] SESSION LIMIT REACHED<br />[02] FEED LOOP DETECTED<br />[03] AWAITING USER INPUT</p>
       </div>
-      <button id="continueButton" type="button">Continue to Instagram</button>
+      <a id="continueButton" href="https://www.instagram.com/">Continue to Instagram</a>
     </main>
     <script src="./continue.js"></script>
   </body>

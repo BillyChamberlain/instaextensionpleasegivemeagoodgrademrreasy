@@ -1,10 +1,10 @@
 :root {
-  --bg: #090b0d;
-  --ink: #d5f7e5;
-  --muted: #86a595;
-  --accent: #ff4d6d;
-  --accent-dark: #ff204e;
-  --signal: #8affc1;
+  --bg: #10151b;
+  --ink: #e8eef2;
+  --muted: #9caab5;
+  --accent: #ff735e;
+  --accent-dark: #ff917d;
+  --signal: #9ce8f2;
 }
 
 * {
@@ -22,22 +22,26 @@ html, body {
 
 body {
   display: grid;
-  min-height: 100%;
+  min-height: 100dvh;
+  padding: 1.25rem;
   place-items: center;
   background:
-    radial-gradient(circle at 50% 40%, rgba(138, 255, 193, 0.08), transparent 38%),
-    repeating-linear-gradient(0deg, transparent 0 3px, rgba(138, 255, 193, 0.035) 4px),
+    radial-gradient(ellipse at 18% 12%, rgba(156, 232, 242, 0.12), transparent 35%),
+    radial-gradient(ellipse at 84% 88%, rgba(255, 115, 94, 0.09), transparent 32%),
+    linear-gradient(rgba(184, 206, 220, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 206, 220, 0.035) 1px, transparent 1px),
     var(--bg);
-  overflow: hidden;
+  background-size: auto, auto, 48px 48px, 48px 48px, auto;
+  overflow-x: hidden;
 }
 
 .pause-card {
   position: relative;
-  width: min(90vw, 680px);
+  width: min(100%, 680px);
   padding: clamp(1.5rem, 5vw, 3.5rem);
-  border: 1px solid rgba(138, 255, 193, 0.4);
-  background: rgba(9, 11, 13, 0.9);
-  box-shadow: 0 0 0 1px rgba(255, 77, 109, 0.15), 0 0 70px rgba(138, 255, 193, 0.08);
+  border: 1px solid rgba(156, 232, 242, 0.38);
+  background: linear-gradient(145deg, rgba(27, 37, 47, 0.96), rgba(13, 18, 24, 0.97));
+  box-shadow: 0 22px 80px rgba(0, 0, 0, 0.38), 0 0 50px rgba(156, 232, 242, 0.06);
   animation: terminal-jolt 2.8s steps(2, end) both;
 }
 
@@ -50,8 +54,8 @@ body {
 }
 
 .pause-card::before {
-  background: repeating-linear-gradient(0deg, transparent 0 5px, rgba(255, 255, 255, 0.07) 6px 7px);
-  mix-blend-mode: screen;
+  background: linear-gradient(90deg, transparent 0 12%, rgba(156, 232, 242, 0.18) 50%, transparent 88%);
+  opacity: 0.35;
   animation: scanline 0.18s steps(2, end) infinite;
 }
 
@@ -66,7 +70,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  border-bottom: 1px solid rgba(138, 255, 193, 0.25);
+  border-bottom: 1px solid rgba(156, 232, 242, 0.22);
   padding-bottom: 1rem;
 }
 
@@ -81,6 +85,7 @@ body {
 .status {
   color: var(--accent);
   font-size: 0.7rem;
+  letter-spacing: 0.08em;
   white-space: nowrap;
 }
 
@@ -124,24 +129,26 @@ h1 {
   line-height: 1.8;
 }
 
-button {
+#continueButton {
+  display: inline-block;
   border: 0;
   padding: 1rem 1.25rem;
-  color: #090b0d;
+  color: #171b20;
   background: var(--accent);
   font: 700 0.85rem 'Courier New', monospace;
   cursor: pointer;
+  text-decoration: none;
   transition: background 160ms ease, transform 160ms ease;
 }
 
-button:hover {
+#continueButton:hover {
   background: var(--accent-dark);
   transform: translate(2px, -2px);
 }
 
-button:disabled {
-  cursor: wait;
-  opacity: 0.7;
+#continueButton:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 4px;
 }
 
 .log-line:nth-child(1) { animation-delay: 0.15s; }
@@ -172,8 +179,8 @@ button:disabled {
 }
 
 @keyframes scanline {
-  from { transform: translateY(-10px); }
-  to { transform: translateY(10px); }
+  from { transform: translateY(-42px); }
+  to { transform: translateY(42px); }
 }
 
 @keyframes frame-flash {
@@ -189,4 +196,15 @@ button:disabled {
   .log-line { animation: none; }
 
   .log-line { opacity: 1; }
+}
+
+@media (max-width: 440px) {
+  .terminal-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  #continueButton {
+    width: 100%;
+  }
 }
